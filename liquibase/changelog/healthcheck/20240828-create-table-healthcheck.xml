@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd
+                        ">
+
+    <changeSet id="create-table-healthcheck" author="Suppawut Nuntajurapho">
+        <createTable tableName="healthcheck" schemaName="room_management">
+            <column name="id" type="int4" autoIncrement="true">
+                <constraints primaryKey="true"></constraints>
+            </column>
+            <column name="status" type="varchar(128)"></column>
+        </createTable>
+        <insert tableName="healthcheck" schemaName="room_management">
+            <column name="status" value="Postgres is online :3" />
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

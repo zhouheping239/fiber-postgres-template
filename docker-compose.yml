@@ -1,0 +1,66 @@
+services:
+  backend_project:
+    container_name: 'backend_project'
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "9289:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      liquibase:
+        condition: service_completed_successfully
+    entrypoint: >
+      bash -c "./run.sh"
+    networks:
+      - default
+
+  postgres:
+    container_name: 'postgres'
+    image: postgres:15.3
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+      POSTGRES_USER: developer
+      POSTGRES_PASSWORD: ""
+      POSTGRES_DB: backend_project
+    ports:
+      - "6289:5432"
+    networks:
+      - default
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d backend_project -U developer"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  liquibase:
+    container_name: 'liquibase'
+    image: liquibase/liquibase:4.28.0
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./liquibase/changelog:/liquibase/changelog
+    command: >
+      sh -c "liquibase
+      --url=jdbc:postgresql://postgres:5432/backend_project
+      --username=developer
+      --password=
+      --defaultSchemaName=public
+      --changeLogFile=changelog/changelog-initschema.xml
+      update
+      &&
+      liquibase
+      --url=jdbc:postgresql://postgres:5432/backend_project
+      --username=developer
+      --password=
+      --defaultSchemaName=room_management
+      --changeLogFile=changelog/changelog-master.xml
+      update"
+    networks:
+      - default
+
+networks:
+  default:
+    driver: bridge
