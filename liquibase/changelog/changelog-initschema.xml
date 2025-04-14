@@ -8,8 +8,8 @@
                         http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd
                         ">
 
-    <changeSet id="create_schema_room_management" author="Suppawut Nuntajurapho">
-        <sql dbms="postgresql" endDelimiter=";"> CREATE SCHEMA IF NOT EXISTS room_management </sql>
+    <changeSet id="create_schema_your_schema_name" author="Suppawut Nuntajurapho">
+        <sql dbms="postgresql" endDelimiter=";"> CREATE SCHEMA IF NOT EXISTS your_schema_name </sql>
     </changeSet>
 
 </databaseChangeLog>

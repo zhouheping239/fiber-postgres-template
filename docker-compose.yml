@@ -55,7 +55,7 @@ services:
       --url=jdbc:postgresql://postgres:5432/backend_project
       --username=developer
       --password=
-      --defaultSchemaName=room_management
+      --defaultSchemaName=your_schema_name
       --changeLogFile=changelog/changelog-master.xml
       update"
     networks:
