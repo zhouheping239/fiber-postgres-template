@@ -16,7 +16,7 @@ echo "Starting migrations..."
 dbUrl="jdbc:postgresql://postgres:5432/backend_project"
 dbUserName="developer"
 dbPassword=""
-defaultSchemaName="room_management"
+defaultSchemaName="your_schema_name"
 
 export LIQUIBASE_HOME=/backend_project/liquibase
 

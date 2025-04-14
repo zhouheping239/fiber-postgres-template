@@ -9,13 +9,13 @@
                         ">
 
     <changeSet id="create-table-healthcheck" author="Suppawut Nuntajurapho">
-        <createTable tableName="healthcheck" schemaName="room_management">
+        <createTable tableName="healthcheck" schemaName="your_schema_name">
             <column name="id" type="int4" autoIncrement="true">
                 <constraints primaryKey="true"></constraints>
             </column>
             <column name="status" type="varchar(128)"></column>
         </createTable>
-        <insert tableName="healthcheck" schemaName="room_management">
+        <insert tableName="healthcheck" schemaName="your_schema_name">
             <column name="status" value="Postgres is online :3" />
         </insert>
     </changeSet>

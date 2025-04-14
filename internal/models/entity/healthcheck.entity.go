@@ -6,5 +6,5 @@ type HealthCheckTable struct {
 }
 
 func (HealthCheckTable) TableName() string {
-	return "room_management.healthcheck"
+	return "your_schema_name.healthcheck"
 }
